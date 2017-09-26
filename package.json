@@ -1,78 +1,34 @@
 {
-  "_args": [
-    [
-      "koa-pagination@3.0.0",
-      "/home/rguerra/workspace/mithlond"
-    ]
+  "name": "koa-chunks",
+  "description": "Koa middleware to uploads large files in multiple chunks",
+  "repository": "RicGuerra/koa-chunks",
+  "version": "0.0.1",
+  "main": "src",
+  "keywords": [
+    "koa",
+    "middleware"
   ],
-  "_from": "koa-pagination@3.0.0",
-  "_id": "koa-pagination@3.0.0",
-  "_inBundle": false,
-  "_integrity": "sha1-+8tvnnCqTx3vXap/6aHmcloI1d4=",
-  "_location": "/koa-pagination",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "version",
-    "registry": true,
-    "raw": "koa-pagination@3.0.0",
-    "name": "koa-pagination",
-    "escapedName": "koa-pagination",
-    "rawSpec": "3.0.0",
-    "saveSpec": null,
-    "fetchSpec": "3.0.0"
-  },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "https://registry.npmjs.org/koa-pagination/-/koa-pagination-3.0.0.tgz",
-  "_spec": "3.0.0",
-  "_where": "/home/rguerra/workspace/mithlond",
-  "author": {
-    "name": "Seegno"
-  },
-  "bugs": {
-    "url": "https://github.com/seegno/koa-pagination/issues"
-  },
   "dependencies": {
-    "debug": "^2.6.3",
-    "http-content-range-format": "^1.0.0",
+    "debug": "^2.2.0",
+    "fs": "0.0.1-security",
+    "ioredis": "^3.1.4",
     "is-safe-integer": "^1.0.2",
-    "range-specifier-parser": "^1.0.2",
-    "standard-http-error": "^2.0.0"
+    "koa-uuid": "^1.2.0",
+    "ms": "^2.0.0",
+    "standard-http-error": "^2.0.1"
   },
-  "description": "A middleware to handle Range Pagination Headers using Range & Content-Range entity-headers",
   "devDependencies": {
-    "eslint": "^3.16.1",
-    "eslint-config-seegno": "^9.0.0",
-    "jest": "^19.0.2",
     "koa": "^2.0.1",
-    "lint-staged": "^3.4.0",
-    "pre-commit": "^1.2.2",
     "supertest": "^3.0.0"
   },
-  "engines": {
-    "node": ">=7.6"
+  "scripts": {
+    "test": "NODE_ENV=test mocha --reporter spec"
   },
-  "homepage": "https://github.com/seegno/koa-pagination#readme",
-  "license": "MIT",
   "lint-staged": {
     "*.js": "eslint"
   },
-  "main": "src",
-  "name": "koa-pagination",
-  "pre-commit": [
-    "lint-staged"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/seegno/koa-pagination.git"
+  "engines": {
+    "node": ">= 7.6"
   },
-  "scripts": {
-    "changelog": "github_changelog_generator --no-issues --header-label='# Changelog' --future-release=v$npm_config_future_release && sed -i '' -e :a -e '$d;N;2,4ba' -e 'P;D' CHANGELOG.md",
-    "lint": "eslint src test",
-    "lint-staged": "lint-staged",
-    "test": "jest --coverage --verbose --env=node",
-    "version": "npm run changelog --future-release=$npm_package_version && git add -A CHANGELOG.md"
-  },
-  "version": "3.0.0"
+  "license": "MIT"
 }

@@ -13,17 +13,15 @@ A typical chunk is 4 MB. Using large chunks will mean fewer calls and faster ove
 The middleware can be configured with the following parameters:
 
 - `file_max`: Maximum file size (`1024` MB = 1G by default).
-- `chunk_min`: Minimum chunk size (`2` MB by default).
-- `chunk_max`: Maximum chunk size [-1 = no limit < file_max] (`150` MB by default).
+- `chunk_max`: Maximum chunk size [-1 = no limit < file_max] (`50` MB by default).
 - `expires`: waiting for next chunk in milliseconds (3600 = 1H by default).
 - `tmp`: Temporary directory to storage de chunks (System Temporary Directory by default).
 
 You can change the defaults by doing:
 
 ```javascript
-chunks({
+middleware({
   file_max: 1024,
-  chunk_min: 4,
   chunk_max: 150,
   expires: 3600,
   tmp: '/tmp'
@@ -33,12 +31,12 @@ chunks({
 ## Usage
 
 ```javascript
-const { chunks } = require('koa-chunks');
+const { middleware } = require('koa-chunks');
 const Koa = require('koa');
 
 const app = new Koa();
 
-app.put('/chunk', chunks(), async ctx => {
+app.put('/chunk', middleware(), async ctx => {
 
 });
 
@@ -51,9 +49,9 @@ Required a body JSON with the file information:
 
 ```javascript
 {
-    "bytes": 230783,
-    "name": "Getting_Started.pdf",
-    "mime_type": "application/pdf"
+    "bytes": 5368709120,
+    "name": "fooBar.zip",
+    "mime_type": "application/zip" // TODO: check is correct
 }
 ```
 
@@ -63,7 +61,7 @@ If session is created successfully the server response with Sample JSON:
 
 ```javascript
 {
-    "session_id": "0000-0000-0000-0000",
+    "session_id": "123e4567-e89b-12d3-a456-426655440000",
     "offset": 0,
     "expires": "3600"
 }
@@ -90,7 +88,7 @@ If chunk uploaded successfully the server response with Sample JSON:
 
 ```javascript
 {
-    "session_id": "0000-0000-0000-0000",
+    "session_id": "123e4567-e89b-12d3-a456-426655440000",
     "offset": 31337,
     "expires": "3600"
 }
@@ -112,5 +110,3 @@ Code | Reason
 
 
 ## Release
-
-[npm-image]: https://img.shields.io/npm/v/koa-pagination.svg?style=flat-square
